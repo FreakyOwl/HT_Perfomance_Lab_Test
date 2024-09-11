@@ -1,8 +1,10 @@
 import math
 import random
+import sys
+import os
 
 
-def task2 (path1, path2):
+def task2(path1, path2):
     with open(path2, "r") as f2:
         file = f2.readlines()
         center = file[0].split()
@@ -24,16 +26,24 @@ def task2 (path1, path2):
                 print("2")
 
 
-path1 = "dot.txt"
-path2 = "circle.txt"
-dot_n = random.randrange(1, 101)
-dots = [f"{str(random.uniform(10**(-38), 10**38))} {str(random.uniform(10**(-38), 10**38))}\n" for i in range(dot_n)]
+if sys.argv[1:]:
+    args = sys.argv[1:]
+    path1 = args[0]
+    path2 = args[1]
+else:
+    path1 = "dot.txt"
+    path2 = "circle.txt"
 
-with open(path1, "w") as f1:
-    f1.writelines(dots)
+if not os.path.isfile(path1):
+    dot_n = random.randrange(1, 101)
+    dots = [f"{str(random.uniform(0.1, 100))} {str(random.uniform(0.1, 100))}\n" for i in
+            range(dot_n)]
+    with open(path1, "w") as f1:
+        f1.writelines(dots)
 
-with open(path2, "w") as f2:
-    circle = f"{str(random.uniform(10**(-38), 10**38))} {str(random.uniform(10**(-38), 10**38))}\n{str(random.randrange(1, 51))}"
-    f2.write(circle)
+if not os.path.isfile(path2):
+    with open(path2, "w") as f2:
+        circle = f"{str(random.uniform(0.1, 100))} {str(random.uniform(0.1, 100))}\n{str(random.randrange(1, 51))}"
+        f2.write(circle)
 
 task2(path1, path2)
