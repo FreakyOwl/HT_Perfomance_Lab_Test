@@ -1,4 +1,5 @@
 import json
+import sys
 
 
 def recursive_parser(data, result_data, key):
@@ -30,8 +31,14 @@ def task3(path1, path2, path3):
         json.dump(data1, json_file)
 
 
-path1 = "tests.json"
-path2 = "values.json"
-path3 = "report.json"
+if sys.argv[1:]:
+    args = sys.argv[1:]
+    path1 = args[0]
+    path2 = args[1]
+    path3 = args[2]
+else:
+    path1 = "tests.json"
+    path2 = "values.json"
+    path3 = "report.json"
 
 task3(path1, path2, path3)
