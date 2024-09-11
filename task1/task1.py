@@ -1,3 +1,5 @@
+import sys
+
 
 def task1(n, m):
     if not isinstance(n, int):
@@ -15,6 +17,12 @@ def task1(n, m):
     print(output)
 
 
-n = 5
-m = 4
+if sys.argv[1:]:
+    args = sys.argv[1:]
+    n = int(args[0])
+    m = int(args[1])
+else:
+    n = 5
+    m = 4
+
 task1(n, m)
